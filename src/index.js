@@ -1,25 +1,55 @@
 //
 import "./styles.css";
 
+console.log("program starts here");
+
 function watchTutorialCallback(callback, errorCallback) {
   let userLeft = false;
-  let userWatchingCatMeme = false;
-
+  let userWatchingCatMeme = true;
+  // if (!chakka) {
+  //   console.log("bhai ivide chakka illa");
+  // } else {
+  //   console.log("kitti kitti chakka kitti ->", chakka);
+  // }
   if (userLeft) {
     errorCallback({
       name: "User Left",
-      message: ":("
+      message: "MESSAGE IS: user left , nothing else"
     });
   } else if (userWatchingCatMeme) {
     errorCallback({
-      name: "User Watching Cat Meme",
-      message: "WebDevSimplified < Cat"
+      name: "User Watching something else",
+      message: "[Message]-User Watching Cat Memet"
     });
   } else {
     callback("Thumbs up and Subscribe");
   }
 }
 
+const parent = () => {
+  const chakka = "chakka is here inside parent";
+  console.log("calling watchTut func");
+  watchTutorialCallback(
+    (message) => {
+      console.log("1st argument ->", message);
+    },
+    (error) => {
+      console.log(
+        "2nd argument ->" +
+          error.name +
+          " " +
+          error.message +
+          "::::chakka -> " +
+          chakka
+      );
+    }
+  );
+};
+
+console.log("calling parent");
+parent();
+
+/*
 function watchTutorialPromise() {
   let userLeft = false;
   let userWatchingCatMeme = false;
@@ -40,14 +70,6 @@ function watchTutorialPromise() {
   });
 }
 
-watchTutorialCallback(
-  (message) => {
-    console.log(message);
-  },
-  (error) => {
-    console.log(error.name + " " + error.message);
-  }
-);
 
 watchTutorialPromise()
   .then((message) => {
@@ -80,3 +102,5 @@ Promise.race([recordVideoOne, recordVideoTwo, recordVideoThree]).then(
     console.log(message);
   }
 );
+
+*/
